@@ -8,62 +8,24 @@
 	setcookie("XSRF-TOKEN", $xsrf);
 ?>
 <!DOCTYPE html>
-<html ng-app="VitaDB">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>VitaDB by Vita Nuova</title>
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-		<link href="templates/lumino/css/bootstrap.min.css" rel="stylesheet">
-		<link href="templates/lumino/css/datepicker3.css" rel="stylesheet">
-		<link href="js/dependencies/alertify.js-master/dist/css/alertify.css" rel="stylesheet" id="alertifyCSS">
-		<link href="css/font-awesome/css/fontawesome-all.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+		<link rel="stylesheet" href="templates/lumino/css/bootstrap.min.css">
+		<link rel="stylesheet" href="templates/lumino/css/datepicker3.css">
+		<link rel="stylesheet" href="js/dependencies/alertify.js-master/dist/css/alertify.css" id="alertifyCSS">
+		<link rel="stylesheet" href="css/font-awesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="js/dependencies/tooltipster-master/dist/css/tooltipster.bundle.min.css" />
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
-		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-		<!--<script type="text/javascript">
-			window.onerror = function (errorMsg, url, lineNumber) {
-				alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
-		}
-		</script>-->
 		<script src="node_modules/angular/angular.min.js"></script>
-		<script src="node_modules/angular-route/angular-route.min.js"></script>
-		<script src="node_modules/angular-animate/angular-animate.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter.min.js"></script>
-		<script src="node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
-		<script src="https://code.angularjs.org/1.5.8/angular-animate.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.min.js"></script>
-		<script src="node_modules/js-md5/build/md5.min.js"></script>
-		<script src="templates/lumino/js/lumino.glyphs.js"></script>
-		<script src="templates/lumino/js/jquery-1.11.1.min.js"></script>
-		<script src="js/dependencies/alertify.js-master/dist/js/alertify.js"></script>
-		<script src="js/dependencies/angular-marquee.js"></script>
-		<script src="app.js"></script>
-		<script src="home/home.controller.js"></script>
-		<script src="home/home2.controller.js"></script>
-		<script src="home/home3.controller.js"></script>
-		<script src="home/api.controller.js"></script>
-		<script src="home/titleslist.controller.js"></script>
-		<script src="home/info.controller.js"></script>
-		<script src="home/staff.controller.js"></script>
-		<script src="home/supporters.controller.js"></script>
-		<script src="home/bounties.controller.js"></script>
-		<script src="login/login.controller.js"></script>
-		<script src="login/logout.controller.js"></script>
-		<script src="login/register.controller.js"></script>
-		<script src="submit/submit.controller.js"></script>
-		<script src="submit/submit2.controller.js"></script>
-		<script src="submit/submit3.controller.js"></script>
-		<script src="submit/submit4.controller.js"></script>
-		<script src="submit/edit.controller.js"></script>
-		<script src="user/info.controller.js"></script>
-		<script src="user/profile.controller.js"></script>
+		<script src="js/dependencies/angular-css.min.js"></script>
+		<script src="node_modules/ngload-min.js"></script>
+
+		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 	</head>
-	<body>
+	<body ng-app="VitaDB">
 		<input type='hidden' name='_csrf' value='<%= _csrf %>'>
 		<nav class="navbar navbar-inverse navbar-fixed-top navbar-login" role="navigation">
 			<div class="container-fluid">
@@ -223,8 +185,41 @@
 			</ul>
 		</div>
 		<div ng-view class="slide page"></div>
-		<script src="templates/lumino/js/bootstrap.min.js"></script>
-		<script src="templates/lumino/js/bootstrap-datepicker.js"></script>
-		<script src="js/dependencies/tooltipster-master/dist/js/tooltipster.bundle.min.js"></script>
 	</body>
+
+	<script src="node_modules/angular-route/angular-route.min.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="js/dependencies/angular-filter.min.js"></script>
+	<script src="js/dependencies/angular-file-upload.min.js"></script>
+	<script src="js/dependencies/md5.min.js"></script>
+	<script src="templates/lumino/js/lumino.glyphs.js"></script>
+	<script src="templates/lumino/js/jquery-1.11.1.min.js"></script>
+	<script src="js/dependencies/alertify.js-master/dist/js/alertify.js"></script>
+	<script src="js/dependencies/angular-marquee.js"></script>
+	<script src="templates/lumino/js/bootstrap.min.js"></script>
+	<script src="templates/lumino/js/bootstrap-datepicker.js"></script>
+	<script src="js/dependencies/tooltipster-master/dist/js/tooltipster.bundle.min.js"></script>
+
+	<script src="app.js"></script>
+	<script src="home/home.controller.js"></script>
+	<script src="home/home2.controller.js"></script>
+	<script src="home/home3.controller.js"></script>
+	<script src="home/api.controller.js"></script>
+	<script src="home/titleslist.controller.js"></script>
+	<script src="home/info.controller.js"></script>
+	<script src="home/staff.controller.js"></script>
+	<script src="home/supporters.controller.js"></script>
+	<script src="home/bounties.controller.js"></script>
+	<script src="login/login.controller.js"></script>
+	<script src="login/logout.controller.js"></script>
+	<script src="login/register.controller.js"></script>
+	<script src="submit/submit.controller.js"></script>
+	<script src="submit/submit2.controller.js"></script>
+	<script src="submit/submit3.controller.js"></script>
+	<script src="submit/submit4.controller.js"></script>
+	<script src="submit/edit.controller.js"></script>
+	<script src="user/info.controller.js"></script>
+	<script src="user/profile.controller.js"></script>
+
+
 </html>

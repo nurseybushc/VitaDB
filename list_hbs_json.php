@@ -1,11 +1,12 @@
 <?php
 
 	// Creating connection
-	include 'config.php';
+	require_once('config.php');
 	$con = mysqli_connect($servername, $username, $password, $dbname);
 	
 	// Checking connection
 	if (mysqli_connect_errno()){
+		http_response_code(500);
 		die("Connection failed: " . mysqli_connect_error());
 	} 
 	

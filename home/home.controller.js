@@ -1,5 +1,4 @@
-app.controller('homeController',function ($scope, $rootScope, $http, $routeParams, $location, $anchorScroll, $css){
-	
+app.controller('homeController',function ($scope, $rootScope, $http, $location, $anchorScroll, $css){	
 	$css.removeAll();
 	$css.add([
 		'templates/lumino/css/styles-' + $rootScope.theme + '.css',
@@ -19,35 +18,46 @@ app.controller('homeController',function ($scope, $rootScope, $http, $routeParam
 	$scope.views.push([])
 	$scope.views.push([])
 	$scope.views.push([])
-	$http.post('list_hbs_json.php').then(function(res){
-		$scope.brews = res.data
-		for (i=0;i<res.data.length;i++){
-			$scope.brews[i].authors = $scope.brews[i].author.split(" & ")
-			switch (Number(res.data[i].type)){
-				case 1:
-					$scope.brews[i].genre = "Original Game"
-					break;
-				case 2:
-					$scope.brews[i].genre = "Game Port"
-					break;
-				case 4:
-					$scope.brews[i].genre = "Utility"
-					break;
-				case 5:
-					$scope.brews[i].genre = "Emulator"
-					break;
-				default:
-					$scope.brews[i].genre = "Unknown"
-					break;
+
+	$http.get('list_hbs_json.php')
+	.then(
+		function(res){
+			$scope.brews = res.data
+			for (i=0;i<res.data.length;i++){
+				$scope.brews[i].authors = $scope.brews[i].author.split(" & ")
+				switch (Number(res.data[i].type)){
+					case 1:
+						$scope.brews[i].genre = "Original Game"
+						break;
+					case 2:
+						$scope.brews[i].genre = "Game Port"
+						break;
+					case 4:
+						$scope.brews[i].genre = "Utility"
+						break;
+					case 5:
+						$scope.brews[i].genre = "Emulator"
+						break;
+					default:
+						$scope.brews[i].genre = "Unknown"
+						break;
+				}
+				$scope.views[Number(res.data[i].type)].push($scope.brews[i])
 			}
-			$scope.views[Number(res.data[i].type)].push($scope.brews[i])
+			$scope.views[0] = $scope.brews
 		}
-		$scope.views[0] = $scope.brews
-	})
+		,function(e){
+			console.log(e);
+		}
+	);
 	
-	$http.post('get_last_updates.php').then(function(res){
-		$scope.updates = res.data
-	})
+	$http.get('get_last_updates.php')
+	.then(function(res){
+		$scope.updates = res.data;
+	}
+	,function(e){
+		console.log(e);
+	});
 	
 	$scope.goTop = function(){
 		$location.hash('top');
