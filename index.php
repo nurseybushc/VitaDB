@@ -1,11 +1,11 @@
 <?
 	error_reporting(E_ERROR | E_PARSE);
-	include 'config.php';
-	include 'xsrf.php';
-	$con = mysqli_connect($servername, $username, $password, $dbname);
-	$xsrf = createXSRF($con);
-	mysqli_close($con);
-	setcookie("XSRF-TOKEN", $xsrf);
+	//include 'config.php';
+	//include 'xsrf.php';
+	//$con = mysqli_connect($servername, $username, $password, $dbname);
+	//$xsrf = createXSRF($con);
+	//mysqli_close($con);
+	//setcookie("XSRF-TOKEN", $xsrf);
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,8 +20,6 @@
 		<link rel="stylesheet" href="css/font-awesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="js/dependencies/tooltipster-master/dist/css/tooltipster.bundle.min.css" />
 		<script src="node_modules/angular/angular.min.js"></script>
-		<script src="js/dependencies/angular-css.min.js"></script>
-		<script src="node_modules/ngload-min.js"></script>
 
 		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 	</head>
@@ -187,6 +185,8 @@
 		<div ng-view class="slide page"></div>
 	</body>
 
+	<script src="js/dependencies/angular-css.min.js"></script>
+	<script src="node_modules/ngload-min.js"></script>
 	<script src="node_modules/angular-route/angular-route.min.js"></script>
 	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
 	<script src="js/dependencies/angular-filter.min.js"></script>

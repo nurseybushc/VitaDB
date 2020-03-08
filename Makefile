@@ -1,11 +1,12 @@
 start:
+	$(info Make: Starting environment containers.)
 	@docker-compose up -d
  
 stop:
-	$(info Make: Stopping "$(ENV)" environment containers.)
-	@docker-compose stop
+	$(info Make: Stopping environment containers.)
+	@docker-compose down -v
  
 restart:
-	$(info Make: Restarting "$(ENV)" environment containers.)
+	$(info Make: Restarting environment containers.)
 	@make -s stop
 	@make -s start

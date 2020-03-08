@@ -10,16 +10,14 @@
 		die("Connection failed: " . mysqli_connect_error());
 	}*/
 	
-	//$con = OpenCon();
+	$con = OpenCon();
 	
-	//$sth = mysqli_query($con,"SELECT * FROM vitadb WHERE type < 8 ORDER BY date DESC");
-	$rows = SelectQuery("SELECT * FROM vitadb WHERE type < 8 ORDER BY date DESC");
-	//if ($sth){
-		//$rows = array();
-		foreach($rows as $row=>$r) { 
-			//echo $side . " => " . $direc . "\n";  
-		//}
-		//while($r = mysqli_fetch_assoc($sth)) {
+	$sth = mysqli_query($con,"SELECT * FROM vitadb WHERE type < 8 ORDER BY date DESC");
+	//$rows = SelectQuery("SELECT * FROM vitadb WHERE type < 8 ORDER BY date DESC");
+	if ($sth){
+		$rows = array();
+		//foreach($rows as $row=>$r) { 
+		while($r = mysqli_fetch_assoc($sth)) {
 			
 			// Downloads counter support
 			$masked_link = "https://vitadb.rinnegatamante.it/get_hb_link.php?id=" . $r['id'];
@@ -36,14 +34,14 @@
 			unset($r['data']);
 			$r['data'] = $data;
 			
-			//$rows[] = $r;
+			$rows[] = $r;
 		}
 		
 		echo json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-	//} else {
-	//	echo("An error occurred: " . mysqli_error($con));
-	//}
+	} else {
+		echo("An error occurred: " . mysqli_error($con));
+	}
 
 	//mysqli_close($con);
-	//CloseCon($con);
+	CloseCon($con);
 ?>
