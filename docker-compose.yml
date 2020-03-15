@@ -12,7 +12,6 @@ services:
       PASS: ${MYSQL_PASSWORD}
     depends_on:
       - mysql
-      #  condition: service_healthy
   mysql:
     image: wangxian/alpine-mysql
     restart: always
@@ -26,7 +25,3 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql
       - ./mysql-init-files:/docker-entrypoint-initdb.d
-    #healthcheck:
-    # test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-    #  timeout: 20s
-    #  retries: 10

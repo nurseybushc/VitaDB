@@ -47,3 +47,5 @@ mysql -P 9906 --protocol=tcp -u devuser -p
 show databases;  
 show tables;  
 
+separating nginx out of php-fpm container
+http://www.inanzzz.com/index.php/post/zpbw/creating-a-simple-php-fpm-nginx-and-mysql-application-with-docker-compose
