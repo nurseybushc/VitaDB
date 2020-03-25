@@ -48,4 +48,35 @@ show databases;
 show tables;  
 
 separating nginx out of php-fpm container
-http://www.inanzzz.com/index.php/post/zpbw/creating-a-simple-php-fpm-nginx-and-mysql-application-with-docker-compose
+http://www.inanzzz.com/index.php/post/zpbw/creating-a-simple-php-fpm-nginx-and-mysql-application-with-docker-compose  
+
+this is the default.conf is what made index.php work at http://localhost  
+`
+...  
+index index.php index.html;
+
+location / {
+    # First attempt to serve request as file, then
+    # as directory, then fall back to index.php
+    try_files $uri $uri/ /index.php?q=$uri&$args;
+}
+...
+`
+
+to get a shell in docker container  
+`
+docker exec -it CONTAINER_ID /bin/sh
+`
+
+user's passwords are stored unecrypted  
+
+there are no joins, i think this could be nosql  
+
+init mysql db with script
+https://stackoverflow.com/questions/29145370/how-can-i-initialize-a-mysql-database-with-schema-in-a-docker-container  
+
+https://medium.com/better-programming/customize-your-mysql-database-in-docker-723ffd59d8fb  
+
+`docker exec -it mysql /bin/sh`  
+`mysql -u root`
+

@@ -1,11 +1,11 @@
 <?
 	error_reporting(E_ERROR | E_PARSE);
-	//include 'config.php';
-	//include 'xsrf.php';
-	//$con = mysqli_connect($servername, $username, $password, $dbname);
-	//$xsrf = createXSRF($con);
-	//mysqli_close($con);
-	//setcookie("XSRF-TOKEN", $xsrf);
+	/*include 'db_connection.php';
+	include 'xsrf.php';
+	$con = OpenCon();
+	$xsrf = createXSRF($con);
+	CloseCon($con);
+	setcookie("XSRF-TOKEN", $xsrf);*/
 ?>
 <!DOCTYPE html>
 <html>
