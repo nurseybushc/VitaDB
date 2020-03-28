@@ -221,5 +221,4 @@
 	<script src="user/info.controller.js"></script>
 	<script src="user/profile.controller.js"></script>
 
-
 </html>

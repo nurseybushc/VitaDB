@@ -1,9 +1,13 @@
 <?php
 	include './db_connection.php';
-
-	$rows = SelectQuery("SELECT * FROM vitadb WHERE type < 8 ORDER BY date DESC");
+	include './constants_sql.php';
 	
-	foreach($rows as $row=>$r) { 
+	$queryName = "list_hbs_json";
+
+	//$rows = SelectQuery($queryName);
+	$rows = SelectQuery($statement_select[$queryName]);
+	
+	foreach($rows as $row=>$r) {
 		
 		// Downloads counter support
 		$masked_link = "https://vitadb.rinnegatamante.it/get_hb_link.php?id=" . $r['id'];
@@ -18,7 +22,7 @@
 		$data = str_replace("%2F", "/", $data);
 		$data = str_replace("+", " ", $data);
 		unset($r['data']);
-		$r['data'] = $data;			
+		$r['data'] = $data;
 	}
 
 	header('Content-Type: application/json');

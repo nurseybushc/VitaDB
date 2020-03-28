@@ -1,7 +1,11 @@
 <?php
 	include './db_connection.php';
+	include './constants_sql.php';
 
-	$rows = SelectQuery("SELECT * FROM vitadb_log ORDER BY id DESC LIMIT 5");
+	$queryName = "get_last_updates";
+
+	//$rows = SelectQuery($queryName);
+	$rows = SelectQuery($statement_select[$queryName]);
 	
 	header('Content-Type: application/json');
 	ob_start('ob_gzhandler');

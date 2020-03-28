@@ -7,14 +7,12 @@ app.controller('infoController',function ($scope, $rootScope, $http, $routeParam
 		'css/vitadb-' + $rootScope.theme + '.css',
 	]);
 	
-	$scope.conf = {}
-	var data = {
-		hid: $routeParams.hid,
-	}
+	$scope.conf = {};
 	
-	var sizes = ["Bytes", "KBs", "MBs", "GBs"]
+	var sizes = ["Bytes", "KBs", "MBs", "GBs"];
 	
-	$http.post('get_hb_json.php', data).then(function(res){
+	console.log("start");
+	$http.get('get_hb_json.php?hid='+ $routeParams.hid).then(function(res){
 		$scope.conf = res.data[0]
 		$scope.conf.long_description = res.data[0].long_description
 		$scope.conf.sshots = res.data[0].screenshots.split(";")
@@ -76,6 +74,7 @@ app.controller('infoController',function ($scope, $rootScope, $http, $routeParam
 			})
 			i++
 		}
+		console.log("end");
 	})
 	
 })

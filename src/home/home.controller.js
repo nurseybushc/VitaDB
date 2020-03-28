@@ -19,35 +19,26 @@ app.controller('homeController',function ($scope, $rootScope, $http, $location, 
 	$scope.views.push([])
 	$scope.views.push([])
 
+	var TypeGenre = {1:"Original Game", 2:"Game Port", 4:"Utility", 5: "Emulator"};
+
 	$http.get('list_hbs_json.php')
 	.then(
 		function(res){
 			$scope.brews = res.data
-			for (i=0;i<res.data.length;i++){
-				$scope.brews[i].authors = $scope.brews[i].author.split(" & ")
-				switch (Number(res.data[i].type)){
-					case 1:
-						$scope.brews[i].genre = "Original Game"
-						break;
-					case 2:
-						$scope.brews[i].genre = "Game Port"
-						break;
-					case 4:
-						$scope.brews[i].genre = "Utility"
-						break;
-					case 5:
-						$scope.brews[i].genre = "Emulator"
-						break;
-					default:
-						$scope.brews[i].genre = "Unknown"
-						break;
-				}
-				$scope.views[Number(res.data[i].type)].push($scope.brews[i])
+			for (i=0;i<res.data.length;++i){
+				var brew = $scope.brews[i];
+				brew.authors = brew.author.split(" & ");
+				
+				var brewType = parseInt(brew.type);
+				var brewGenre = TypeGenre[brewType];
+
+				brew.genre = brewGenre ? brewGenre : "Unknown";
+				$scope.views[brewType].push(brew);
 			}
-			$scope.views[0] = $scope.brews
+			$scope.views[0] = $scope.brews;
 		}
 		,function(e){
-			console.log(e);
+			console.error(e);
 		}
 	);
 	
@@ -56,7 +47,7 @@ app.controller('homeController',function ($scope, $rootScope, $http, $location, 
 		$scope.updates = res.data;
 	}
 	,function(e){
-		console.log(e);
+		console.error(e);
 	});
 	
 	$scope.goTop = function(){
