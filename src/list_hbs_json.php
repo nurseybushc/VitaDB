@@ -1,11 +1,8 @@
 <?php
 	include './db_connection.php';
-	include './constants_sql.php';
 	
 	$queryName = "list_hbs_json";
-
-	//$rows = SelectQuery($queryName);
-	$rows = SelectQuery($statement_select[$queryName]);
+	$rows = SelectQuery($queryName);
 	
 	foreach($rows as $row=>$r) {
 		
@@ -26,6 +23,7 @@
 	}
 
 	header('Content-Type: application/json');
+	header('Cache-Control: public, max-age=3600'); //cache for 1 hour
 	ob_start('ob_gzhandler');
 	echo json_encode($rows);
 ?>

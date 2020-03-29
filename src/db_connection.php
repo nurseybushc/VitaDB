@@ -15,27 +15,10 @@
         $conn -> close();
     }
 
-    //function SelectQuery($queryName){
-    //    $type = "SELECT";
-    //    $queryString = GetQueryString($type,$queryName);
-    function SelectQuery($queryString){
-        //$queryString = $statement_select[$queryName];
-
-        $con = OpenCon();
-        $result = $con -> query($queryString);
-
-        if(!$result || $result -> num_rows == 0){
-            return array();
-        }
-
-        $rows = $result -> fetch_all(MYSQLI_ASSOC);
-        CloseCon($con);
-
-        return $rows;
-    }
-
-    function SelectQueryWithParams($queryString, $paramTypes, $paramVals){
-
+    function SelectQuery($queryName, $paramTypes = array(), $paramVals = array()){
+        $type = "SELECT";
+        $queryString = GetQueryString($type,$queryName);
+        
         $con = OpenCon();
         $stmt = PrepareQuery($con, $queryString, $paramTypes, $paramVals);
         $stmt -> execute();
@@ -53,22 +36,22 @@
     
     function PrepareQuery($con, $queryString, $paramTypes, $paramVals){
         $stmt = $con -> prepare($queryString);
-        for ($i = 0; $i < count($paramTypes); ++$i) {
-            $stmt -> bind_param($paramTypes[$i], $paramVals[$i]);
+        for ($i = 0; $i < count($paramVals); ++$i) {
+            $stmt -> bind_param($paramTypes[$paramVals[$i]], $paramVals[$i]);
         }
         return $stmt;
     }
 
     function GetQueryString($type,$queryName){
-        $queryStringMap = array_merge(array(), $statement_select);
-        /*switch($type)
+        $queryString = "";
+        switch($type)
         {
             case "SELECT":
-                $queryStringMap = array_merge(array(), $statement_select);
+                $stmt_map = GetStatementSelect();
+                $queryString = $stmt_map[$queryName];
                 break;
-        }*/
-
-        $queryString = $queryStringMap[$queryName];
+        }
+        
         return $queryString;
     }
 ?>
